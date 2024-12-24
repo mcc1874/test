@@ -58,6 +58,28 @@
                 // "<p>信息：" + result.info + "</p>";
                 $("#api2").html(html);
             });
+
+            // 请求接口3
+            $.getJSON("https://api.macaumarksix.com/api/hkjc.com", function (data) {
+                var result = data[0];
+                var openCode = result.openCode.split(",");
+                var wave = result.wave.split(",");
+                var html = "<h2>港</h2>" +
+                    "<p>期号：" + result.expect + "</p>" +
+                    "<p>号码：";
+                for (var i = 0; i < openCode.length; i++) {
+                    html += "<span style='color: " + wave[i] + "'>" + openCode[i] + "</span>";
+                    if (i < openCode.length - 1) {
+                        html += ", ";
+                    }
+                }
+                html += "</p>" +
+                    "<p>属相：" + result.zodiac + "</p>" +
+                    "<p>更新时间：" + result.openTime + "</p>";
+                // "<p>颜色：" + result.wave + "</p>" +
+                // "<p>信息：" + result.info + "</p>";
+                $("#api3").html(html);
+            });
         });
     </script>
 </head>
@@ -65,6 +87,7 @@
 <body>
     <div id="api1"></div>
     <div id="api2"></div>
+    <div id="api3"></div>
 </body>
 
 </html>
